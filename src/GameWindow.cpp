@@ -33,10 +33,7 @@ bool GameWindow::init(const char* title, int x, int y, int width, int height, bo
 		std::cout << "Renderer create error: " << SDL_GetError() << std::endl;
 		initialized = false;
 	}
-
-	//addObject(new GameObject("<test>", 200, 300)); //Example
-
-
+	
 	return initialized;
 }
 

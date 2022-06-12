@@ -48,14 +48,8 @@ public:
 
 	void setTexture(SDL_Texture* texture) { this->texture = texture; }
 
-	void render() override { //render was came from Object.h
+	void render() override { //render was came from BasicGameObject.h
 		Renderer::renderTexture(texture, &srcRect, &destRect);
-	}
-
-	void update() override
-	{
-		std::cout << "GameObject update" << std::endl;
-		setX(getX() + 5);
 	}
 
 	int getSX() {return srcRect.x;}

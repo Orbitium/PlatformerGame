@@ -1,10 +1,8 @@
 #pragma once
 #include <vector>
-#include <unordered_set>
 #include <unordered_map>
 
-#include "objects/BasicGameObject.h"
-#include <iostream>
+class BasicGameObject;
 
 class ObjectManager
 {
@@ -24,12 +22,10 @@ public:
         return lastAssignedID++;
     } //Create object and return object's id
     
-    static void deleteObject(std::uint16_t priority, std::uint16_t objectID); //Add object to objectClearQueue
+    static void deleteObject(std::uint16_t priority, std::uint16_t objectID);
     template<typename T> T* getObject(std::uint16_t priority, std::uint16_t objectID);
 
-    void clearObject(); //Like garbage collection, delete all object after rendering & updating
     void proccessObjects();
-
     void initObjects(); //For test some object or start some object manually
 private:
     static std::vector<std::unordered_map<std::uint16_t , BasicGameObject*>> objects;

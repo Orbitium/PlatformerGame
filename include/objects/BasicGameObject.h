@@ -1,6 +1,5 @@
 #pragma once
 #include <SDL.h>
-#include <iostream>
 
 #include "Renderer.h"
 
@@ -30,13 +29,11 @@ public:
 
     virtual void render()
     {
-        //Renderer::setDrawColor(0,0,0,225);
-        //Renderer::renderRect(&destRect);
+        Renderer::setDrawColor(0,0,0,225);
+        Renderer::renderRect(&destRect);
     }
 
-    virtual void update() {
-		std::cout << "BasicGameObject update" << std::endl;
-    }
+    virtual void update() {}
 
     int getID() {return uniqueID;}
 protected:

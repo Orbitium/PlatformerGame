@@ -36,16 +36,3 @@ bool GameWindow::init(const char* title, int x, int y, int width, int height, bo
 	
 	return initialized;
 }
-
-void GameWindow::handleEvents()
-{
-	SDL_PollEvent(&event);
-	switch (event.type)
-	{
-	case SDL_QUIT:
-		isRunning = false;
-		break;
-	default:
-		break;
-	}
-}

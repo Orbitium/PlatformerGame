@@ -7,12 +7,12 @@ class BasicGameObject;
 class ObjectManager
 {
 public:
-    template<typename T, typename... TArgs> static std::uint16_t createObject(std::uint16_t priority, TArgs... args)
+    template<typename T, typename... TArgs> static int createObject(int priority, TArgs... args)
     {
         T* t = new T(lastAssignedID, args...);
         if (priority >= objects.size())
         {
-            std::unordered_map<std::uint16_t, BasicGameObject*> layer;
+            std::unordered_map<int, BasicGameObject*> layer;
             layer.insert({lastAssignedID, t});
             objects.push_back(layer);
         }
@@ -22,12 +22,12 @@ public:
         return lastAssignedID++;
     } //Create object and return object's id
     
-    static void deleteObject(std::uint16_t priority, std::uint16_t objectID);
-    template<typename T> T* getObject(std::uint16_t priority, std::uint16_t objectID);
+    static void deleteObject(int priority, int objectID);
+    template<typename T> T* getObject(int priority, int objectID);
 
     void proccessObjects();
     void initObjects(); //For test some object or start some object manually
 private:
-    static std::vector<std::unordered_map<std::uint16_t , BasicGameObject*>> objects;
-    static std::uint16_t lastAssignedID;
+    static std::vector<std::unordered_map<int , BasicGameObject*>> objects;
+    static int lastAssignedID;
 };

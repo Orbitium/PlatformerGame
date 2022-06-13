@@ -4,16 +4,12 @@
 #include <string>
 #include <vector>
 
-class GameObject;
 class GameWindow
 {
 public:
 	bool init(const char* title, int x, int y, int width, int height, bool fullscreen);
-	void handleEvents();
 
-	bool isRunning = true;
+	static bool isRunning;
 private:
-	SDL_Event event;
 	SDL_Window* window;
-	//TileManager tileManager;
 };

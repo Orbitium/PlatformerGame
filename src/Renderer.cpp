@@ -22,7 +22,7 @@ SDL_Texture* Renderer::loadTexture(const char* filePath)
 {
 	SDL_Surface* surface = IMG_Load(filePath);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-	if (!texture)
+	if (!texture || !surface)
 		std::cout << filePath << " texture is not found!" << std::endl;
 	SDL_FreeSurface(surface);
 
@@ -68,7 +68,7 @@ void Renderer::clear()
 
 void Renderer::resetColor()
 {
-    Renderer::setDrawColor(255,255,255,225);
+    Renderer::setDrawColor(113, 220, 235, 225);
 }
 
 void Renderer::draw()

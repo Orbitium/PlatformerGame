@@ -6,12 +6,12 @@
 class BasicGameObject //If any game object created in the program MUST include this class
 {
 public:
-    BasicGameObject(std::uint16_t uniqueID, int x, int y, int w, int h)
+    BasicGameObject(int uniqueID, int x, int y, int w, int h)
     {
         this->uniqueID = uniqueID;
         destRect = SDL_Rect{x,y,w,h};
     }
-    BasicGameObject(std::uint16_t uniqueID, int x, int y)
+    BasicGameObject(int uniqueID, int x, int y)
     {
         this->uniqueID = uniqueID;
         destRect = SDL_Rect{x,y,50,50};

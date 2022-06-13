@@ -49,6 +49,8 @@
         "xutility": "cpp",
         "unordered_map": "cpp",
         "map": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "fstream": "cpp",
+        "sstream": "cpp"
     }
 }

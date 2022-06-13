@@ -9,19 +9,19 @@
 class GameObject : public BasicGameObject
 {
 public:
-	GameObject(std::uint16_t uniqueID, const char* texturePath, int x, int y) : BasicGameObject(uniqueID, x, y)
+	GameObject(int uniqueID, const char* texturePath, int x, int y) : BasicGameObject(uniqueID, x, y)
 	{
 		texture = Renderer::loadTexture(texturePath);
 
 		srcRect.x = srcRect.y = 0;
-		destRect.h = destRect.w = srcRect.w = srcRect.h = 32;
+		destRect.h = destRect.w = srcRect.w = srcRect.h = 50;
 
 		destRect.x = x;
 		destRect.y = y;
 		std::cout << "GameObject created!" << std::endl;
 	}
 
-	GameObject(std::uint16_t uniqueID, const char* texturePath, int x, int y, int w, int h) : BasicGameObject(uniqueID,x,y,w,h)
+	GameObject(int uniqueID, const char* texturePath, int x, int y, int w, int h) : BasicGameObject(uniqueID,x,y,w,h)
 	{
 		texture = Renderer::loadTexture(texturePath);
 
@@ -33,7 +33,7 @@ public:
 		destRect.y = y;
 	}
 	
-	GameObject(std::uint16_t uniqueID, const char* texturePath, int x, int y, int w, int h, int s_x, int s_y) : BasicGameObject(uniqueID,x,y,w,h)
+	GameObject(int uniqueID, const char* texturePath, int x, int y, int w, int h, int s_x, int s_y) : BasicGameObject(uniqueID,x,y,w,h)
 	{
 		texture = Renderer::loadTexture(texturePath);
 
@@ -58,7 +58,11 @@ public:
 	void setSX(int newX) {srcRect.x = newX;}
 	void setSY(int newY) {srcRect.y = newY;}
 
+	SDL_Rect& getDestRect() {return destRect;}
+	int& getID() {return uniqueID;}
+
 private:
+	int uniqueID;
 	SDL_Texture* texture;
 	SDL_Rect /*destRect*/ srcRect; //destRect was came from BasicGameObject.h
 };

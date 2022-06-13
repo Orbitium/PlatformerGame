@@ -2,18 +2,16 @@
 #include "objects/BasicGameObject.h"
 #include "objects/GameObject.h"
 
-std::uint16_t ObjectManager::lastAssignedID = 0;
-std::vector<std::unordered_map<std::uint16_t, BasicGameObject*>> ObjectManager::objects;
+int ObjectManager::lastAssignedID = 0;
+std::vector<std::unordered_map<int, BasicGameObject*>> ObjectManager::objects;
 
 void ObjectManager::initObjects()
 {
-	createObject<GameObject>(std::uint16_t(0), "res/box.png", 20, 0);
-	createObject<BasicGameObject>(std::uint16_t(0), 20, 60);
 }
 
-void ObjectManager::deleteObject(std::uint16_t priority, std::uint16_t objectID)
+void ObjectManager::deleteObject(int priority, int objectID)
 {
-    for (std::pair<std::uint16_t, BasicGameObject*> element : objects.at(priority))
+    for (std::pair<int, BasicGameObject*> element : objects.at(priority))
     {
         if (element.first == objectID)
         {
@@ -24,18 +22,18 @@ void ObjectManager::deleteObject(std::uint16_t priority, std::uint16_t objectID)
     }
 }
 
-template<typename T> T* ObjectManager::getObject(std::uint16_t priority, std::uint16_t objectID) //Probably not working
+template<typename T> T* ObjectManager::getObject(int priority, int objectID) //Probably not working
 {
     return static_cast<T*>(objects.at(priority).at(objectID));
 }
 
 void ObjectManager::proccessObjects()
 {
-    std::vector<std::unordered_map<std::uint16_t , BasicGameObject*>>::iterator mapIterator;
+    std::vector<std::unordered_map<int , BasicGameObject*>>::iterator mapIterator;
     
     for (mapIterator = objects.begin(); mapIterator < objects.end(); mapIterator++)
     {
-        std::unordered_map<std::uint16_t, BasicGameObject*>::iterator objectIterator = mapIterator->begin();
+        std::unordered_map<int, BasicGameObject*>::iterator objectIterator = mapIterator->begin();
         while(objectIterator != mapIterator->end())
         {
             objectIterator->second->update();

@@ -6,6 +6,8 @@
 #include "objects/ObjectManager.h"
 #include "tiles/TileManager.h"
 #include "objects/Player.h"
+#include "HitboxManager.h"
+#include "tiles/GrassTile.h"
 
 #include <iostream>
 
@@ -16,6 +18,7 @@ Renderer renderer;
 EventHandler eventHandler;
 ObjectManager objectManager;
 TileManager tileManager;
+HitboxManager hitboxManager;
 
 int main(int argc, char* args[])
 {
@@ -29,8 +32,10 @@ int main(int argc, char* args[])
 			eventHandler.handleEvents();
 			renderer.clear();
 			objectManager.proccessObjects();
+			hitboxManager.checkCollisions();
         	renderer.resetColor();
 			renderer.draw();
+			objectManager.clearObjects();
 			SDL_Delay(16.6); //Make game to ~60 FPS
 		}
 	}

@@ -1,4 +1,5 @@
 #include "tiles/TileManager.h"
+#include "tiles/GrassTile.h"
 #include "objects/ObjectManager.h"
 #include "objects/GameObject.h"
 
@@ -32,13 +33,13 @@ void TileManager::createLevel(int level)
             switch(id)
             {
                 case 1:
-                    objectID = ObjectManager::createObject<GameObject>(1, "res/1.png", i * CELL_SIZE, j * CELL_SIZE);
+                    objectID = ObjectManager::createObject<GrassTile>(1, "res/1.png", i * CELL_SIZE, j * CELL_SIZE);
                 break;
                 case 2:
-                    objectID = ObjectManager::createObject<GameObject>(1, "res/2.png", i * CELL_SIZE, j * CELL_SIZE);
+                    objectID = ObjectManager::createObject<GrassTile>(1, "res/2.png", i * CELL_SIZE, j * CELL_SIZE);
                 break;
                 case 3:
-                    objectID = ObjectManager::createObject<GameObject>(1, "res/3.png", i * CELL_SIZE, j * CELL_SIZE);
+                    objectID = ObjectManager::createObject<GrassTile>(1, "res/3.png", i * CELL_SIZE, j * CELL_SIZE);
                 break;
                 case 4:
                     objectID = ObjectManager::createObject<GameObject>(1, "res/4.png", i * CELL_SIZE, j * CELL_SIZE);

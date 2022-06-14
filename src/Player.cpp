@@ -1,4 +1,5 @@
 #include "objects/Player.h"
+#include "objects/ObjectManager.h"
 
 void Player::onEvent(SDL_Event* event)
 {
@@ -10,6 +11,13 @@ void Player::onEvent(SDL_Event* event)
                 break;
             case SDLK_d:
                 xAcceleration = speed;
+                break;
+            case SDLK_f:
+                ObjectManager::deleteObject(2, getID());
+                break;
+            case SDLK_SPACE:
+                if(onGround && yAcceleration == 0)
+                    yAcceleration = -15;
                 break;
         }
     }
@@ -31,5 +39,31 @@ void Player::onEvent(SDL_Event* event)
 void Player::update()
 {
     setX(getX() + xAcceleration);
-    setY(getY() + yAcceleration);
+    if (yAcceleration < -1) {
+        setY(getY() + yAcceleration);
+        yAcceleration += 0.5;
+    }
+    else if (yAcceleration == -1)
+    {
+        fallSpeed = 4;
+        setY(getY() + yAcceleration);
+        yAcceleration = 0;  
+    }
+    else if (!onGround) {
+        fall();
+        fallSpeed += 0.8;
+    }
+    else if (!isHitted)
+        onGround = false;
+    std::cout << yAcceleration << std::endl;
+
+}
+
+void Player::onHit(Hitbox* otherObject, HitDirection xdir, HitDirection ydir)
+{
+    if (otherObject->hitboxType == GROUND && ydir == UP) {
+        onGround = true;
+        isHitted = false; //Reset hit state
+        destRect.y = otherObject->t->getDestRect().y - otherObject->t->getDestRect().h + 1;
+    }
 }

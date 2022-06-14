@@ -2,6 +2,7 @@
 #include <SDL.h>
 
 #include "Renderer.h"
+#include <iostream>
 
 class BasicGameObject //If any game object created in the program MUST include this class
 {
@@ -9,6 +10,7 @@ public:
     BasicGameObject(int uniqueID, int x, int y, int w, int h)
     {
         this->uniqueID = uniqueID;
+        std::cout << uniqueID;
         destRect = SDL_Rect{x,y,w,h};
     }
     BasicGameObject(int uniqueID, int x, int y)
@@ -36,6 +38,8 @@ public:
     virtual void update() {}
 
     int getID() {return uniqueID;}
+
+    virtual ~BasicGameObject() {}
 protected:
     SDL_Rect destRect;
     int uniqueID;

@@ -31,4 +31,5 @@ void EventHandler::registerEvent(Event* event)
 void EventHandler::unregisterEvent(Event* event)
 {
     handlers.erase(event);
+	std::cout << "Handler size: " << handlers.size() << std::endl;
 }

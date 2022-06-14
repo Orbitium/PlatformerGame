@@ -61,8 +61,13 @@ public:
 	SDL_Rect& getDestRect() {return destRect;}
 	int& getID() {return uniqueID;}
 
+	~GameObject() override
+	{
+		SDL_DestroyTexture(texture);
+		std::cout << "GameObject destructor called! " << std::endl;
+	}
+
 private:
-	int uniqueID;
 	SDL_Texture* texture;
 	SDL_Rect /*destRect*/ srcRect; //destRect was came from BasicGameObject.h
 };

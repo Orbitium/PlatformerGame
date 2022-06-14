@@ -23,11 +23,13 @@ public:
     } //Create object and return object's id
     
     static void deleteObject(int priority, int objectID);
+    void clearObjects(); //Like garbage collection
     template<typename T> T* getObject(int priority, int objectID);
 
     void proccessObjects();
     void initObjects(); //For test some object or start some object manually
 private:
     static std::vector<std::unordered_map<int , BasicGameObject*>> objects;
+    static std::vector<BasicGameObject*> deleteQueue;
     static int lastAssignedID;
 };

@@ -4,6 +4,7 @@
 
 int ObjectManager::lastAssignedID = 0;
 std::vector<std::unordered_map<int, BasicGameObject*>> ObjectManager::objects;
+std::vector<BasicGameObject*> ObjectManager::deleteQueue;
 
 void ObjectManager::initObjects()
 {
@@ -13,13 +14,24 @@ void ObjectManager::deleteObject(int priority, int objectID)
 {
     for (std::pair<int, BasicGameObject*> element : objects.at(priority))
     {
+        std::cout << element.first << std::endl;
         if (element.first == objectID)
         {
             objects.at(priority).erase(element.first);
-            delete element.second;
+            deleteQueue.push_back(element.second);
+            std::cout << "Object added to queue!" << std::endl;
             break;
         }
     }
+}
+
+void ObjectManager::clearObjects()
+{
+    for (BasicGameObject* gameObject : deleteQueue)
+    {
+        delete gameObject;
+    }
+    deleteQueue.clear();
 }
 
 template<typename T> T* ObjectManager::getObject(int priority, int objectID) //Probably not working
